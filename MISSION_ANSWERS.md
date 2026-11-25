@@ -187,10 +187,21 @@ Sự cố và cách xử lý:
 
 ## Part 3 — Cloud Deployment
 
-### Exercise 3.1 — Railway
-Nền tảng chính được chọn là Railway. Deploy chính agent Part 6 trong `06-lab-complete/`, kèm Redis riêng; không deploy app minh họa Part 3.
+### Exercise 3.1 / 3.2 — Deploy agent Part 6
+**URL public: https://day14-agent-6a2l.onrender.com** (Render, nền tảng chính).
 
-Code và kiểm tra local đã hoàn thành (PASS 12/12). Đăng nhập Railway CLI đang chờ chủ tài khoản xác thực thiết bị. Chưa có URL public đã được kiểm chứng tại thời điểm ghi mục này. Trạng thái thực tế và các lệnh kiểm tra nằm ở DEPLOYMENT.md.
+Ban đầu chọn Railway; CLI đăng nhập được nhưng tài khoản báo "Trial Ended", không deploy được nếu không nâng cấp trả phí. Vì vậy chuyển sang Render (Exercise 3.2): tạo Blueprint từ repo GitHub public, Blueprint Path `06-lab-complete/render.yaml`. Render tạo web service Docker `day14-agent` và Key Value `day14-redis`, deploy commit `6addfef` thành công. Không deploy app minh họa của `03-cloud-deployment/`.
+
+Kết quả 4 lệnh tự kiểm CP6 (25/11/2026 13:56 UTC):
+
+| Lệnh | Kết quả |
+|---|---:|
+| GET /health | 200 |
+| GET /ready | 200 |
+| POST /ask không key | 401 |
+| POST /ask có key | 200 |
+
+Chi tiết, biến môi trường và ảnh: `DEPLOYMENT.md`, `reports/render-cp6.txt`, `screenshots/dashboard.png`, `running.png`, `test.png`, `render-env.png`.
 
 ### Exercise 3.2 — So sánh Railway và Render
 
@@ -204,7 +215,7 @@ Code và kiểm tra local đã hoàn thành (PASS 12/12). Đăng nhập Railway 
 | API key | Đặt trong Variables của service, không commit giá trị | generateValue: true, không ghi secret trong YAML |
 | Dữ liệu deploy | railway up upload source từ thư mục Part 6 | Render Blueprint lấy source từ repository |
 
-Hai cấu hình đều mô tả app dùng Docker và Redis. Cấu hình Render dùng plan free để tham khảo; chưa deploy Render, không khẳng định đã kiểm chứng runtime trên Render.
+Hai cấu hình đều mô tả app dùng Docker và Redis. Khác biệt chính: `railway.toml` chỉ cấu hình build/deploy cho một service, còn Redis và biến môi trường được tạo trên dashboard/CLI; `render.yaml` là Blueprint khai báo cả hạ tầng (web service + Key Value), cách nối `REDIS_URL` và cách sinh secret ngay trong file. Render đã được deploy và kiểm chứng runtime (URL ở trên); Railway chưa deploy được vì tài khoản hết trial.
 
 ### Exercise 3.3 — Đọc pipeline Cloud Run
 1. cloudbuild.yaml có bước cài dependencies/pytest và gọi pytest tests/ để kiểm tra trước build.
@@ -483,7 +494,7 @@ Bằng chứng đầy đủ: `reports/production-readiness.txt`.
 - Log app là JSON, không ghi API key hoặc nội dung câu hỏi.
 - Docker multi-stage, slim, non-root, uvicorn PID 1 qua exec, port đọc PORT. Checker đo image khoảng 63 MB theo trường size của Docker.
 - Kiểm tra 100 lời gọi Redis đồng thời: đúng 7 được chấp nhận, 93 bị chặn khi limit=7. 100 yêu cầu giữ ngân sách chỉ nhận 6 khoản giữ; tổng 0.00009 USD không vượt budget 0.0001 USD. Bằng chứng `reports/redis-concurrency.json`.
-- PASS tiêu chí cấu hình deploy của checker chưa đồng nghĩa URL cloud đã được kiểm tra; trạng thái deploy thực tế ghi ở DEPLOYMENT.md.
+- Ngoài PASS của checker, URL cloud thật đã được kiểm tra: https://day14-agent-6a2l.onrender.com trả 200/200/401/200 cho 4 lệnh CP6 (chi tiết DEPLOYMENT.md).
 
 ## Part 7 — Benchmark & Observability
 
@@ -558,12 +569,13 @@ Số đo và phân tích nằm trong BENCHMARK_REPORT.md, JSON trong reports/, C
 - AI thêm histogram phân bố độ dài câu hỏi và kiểm tra qua endpoint /metrics thật.
 - Xác nhận ba URL 404 khác nhau gom vào label route=unmatched, không tạo label theo URL tùy ý.
 
-### Chuẩn bị deploy Railway và báo cáo Part 3
+### Chuẩn bị deploy và báo cáo Part 3
 - AI tạo cấu hình Docker/Railway/Render và so sánh từ nội dung các file thực tế.
-- Chủ tài khoản chọn Railway; CLI đã cài từ website chính thức. Chưa xác nhận deploy khi chưa đăng nhập và kiểm tra URL thật.
+- Railway: chủ tài khoản đăng nhập; dashboard báo "Trial Ended", nên chủ tài khoản chọn chuyển sang Render thay vì nâng cấp trả phí.
+- Render: chủ tài khoản đăng nhập; AI tạo Blueprint từ repo public với path `06-lab-complete/render.yaml`, chạy 4 lệnh CP6 (200/200/401/200) và chụp ảnh. AI đọc key từ clipboard vào biến môi trường của lệnh curl, không in và không ghi key vào file.
 
 ### Hỗ trợ observability và báo cáo cuối số đo
 - AI sửa PYTHONUSERBASE trong Dockerfile observability sau khi log xác nhận ModuleNotFoundError.
 - Đã chạy Locust thật 100 users/2 phút cho 1 và 3 instance; chạy A/B/C/D/E và fault kết hợp để quan sát nhiều rule firing.
 - Giữ nguyên alert_rules.yml; promtool test rules trả SUCCESS. Timeline alert và CSV được lưu nguyên số đo, bao gồm lỗi mock.
-- Trace được lấy từ Jaeger API v3, chọn trace chậm/lỗi có log JSON trùng trace_id. Ảnh UI và deploy cloud vẫn cần bằng chứng trước khi hoàn thành toàn bộ bài.
+- Trace được lấy từ Jaeger API v3, chọn trace chậm/lỗi có log JSON trùng trace_id. Ảnh Grafana/Jaeger/Prometheus được chụp bằng Chrome headless từ stack đang chạy, trong lúc Locust tạo tải với cấu hình chaos error=0.2, slow=0.3.

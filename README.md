@@ -5,8 +5,9 @@
 - Part 6: kiểm tra đầy đủ runtime + Docker đạt **PASS 12/12, 43/43 checks**; xem [output gốc](reports/production-readiness.txt).
 - Eval v2 sau bổ sung KB: **23/23**, không regression. Kết quả load test, bao gồm FAIL SLO, nằm trong [BENCHMARK_REPORT.md](BENCHMARK_REPORT.md).
 - Source agent: [06-lab-complete](06-lab-complete/); hướng dẫn chạy: [RUNBOOK](06-lab-complete/RUNBOOK.md).
-- Câu trả lời lab: [MISSION_ANSWERS.md](MISSION_ANSWERS.md); trạng thái cloud thực tế: [DEPLOYMENT.md](DEPLOYMENT.md).
-- Việc còn chờ: xác thực Railway, kiểm tra URL public và ảnh UI theo checklist. PASS local không đồng nghĩa đã deploy cloud.
+- Câu trả lời lab: [MISSION_ANSWERS.md](MISSION_ANSWERS.md); deploy cloud: [DEPLOYMENT.md](DEPLOYMENT.md).
+- URL public (Render): https://day14-agent-6a2l.onrender.com. 4 lệnh CP6 trả 200 / 200 / 401 / 200.
+- Ảnh: 3 ảnh deploy + 4 ảnh Part 7 trong [screenshots/](screenshots/).
 
 
 > Đưa agent lên cloud, đo xem nó nhanh và đúng tới đâu, rồi giám sát nó khi chạy thật.

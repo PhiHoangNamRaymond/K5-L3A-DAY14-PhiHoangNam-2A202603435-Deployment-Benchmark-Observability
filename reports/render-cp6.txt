@@ -1,0 +1,15 @@
+$ date -u
+Wed Nov 25 13:56:17 UTC 2026
+$ BASE=https://day14-agent-6a2l.onrender.com   # AGENT_API_KEY lấy từ Render env, không in ra
+$ curl -sS -o /dev/null -w '%{http_code}\n' "$BASE/health"
+200
+$ curl -sS -o /dev/null -w '%{http_code}\n' "$BASE/ready"
+200
+$ curl -sS -o /dev/null -w '%{http_code}\n' -X POST "$BASE/ask" -H 'Content-Type: application/json' -d '{"question":"Hello"}'
+401
+$ curl -sS -o /dev/null -w '%{http_code}\n' -X POST "$BASE/ask" -H 'Content-Type: application/json' -H "X-API-Key: $AGENT_API_KEY" -d '{"question":"Hello"}'
+200
+$ curl -sS "$BASE/health"
+{"status":"ok","environment":"production"}
+$ curl -sS -X POST "$BASE/ask" -H 'Content-Type: application/json' -H "X-API-Key: $AGENT_API_KEY" -d '{"question":"What is Docker?"}'
+{"question":"What is Docker?","answer":"Container là cách đóng gói app để chạy ở mọi nơi. Build once, run anywhere!","usage":{"input_tokens":4,"output_tokens":19,"cost_usd":1.2e-05,"source":"estimated_mock"}}
