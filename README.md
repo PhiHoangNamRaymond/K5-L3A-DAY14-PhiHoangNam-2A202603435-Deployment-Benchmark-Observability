@@ -1,5 +1,14 @@
 # Day 14 — Deployment, Benchmark & Observability
 
+## Trạng thái bài làm
+
+- Part 6: kiểm tra đầy đủ runtime + Docker đạt **PASS 12/12, 43/43 checks**; xem [output gốc](reports/production-readiness.txt).
+- Eval v2 sau bổ sung KB: **23/23**, không regression. Kết quả load test, bao gồm FAIL SLO, nằm trong [BENCHMARK_REPORT.md](BENCHMARK_REPORT.md).
+- Source agent: [06-lab-complete](06-lab-complete/); hướng dẫn chạy: [RUNBOOK](06-lab-complete/RUNBOOK.md).
+- Câu trả lời lab: [MISSION_ANSWERS.md](MISSION_ANSWERS.md); trạng thái cloud thực tế: [DEPLOYMENT.md](DEPLOYMENT.md).
+- Việc còn chờ: xác thực Railway, kiểm tra URL public và ảnh UI theo checklist. PASS local không đồng nghĩa đã deploy cloud.
+
+
 > Đưa agent lên cloud, đo xem nó nhanh và đúng tới đâu, rồi giám sát nó khi chạy thật.
 
 > **AICB-P1 · VinUniversity 2026**  

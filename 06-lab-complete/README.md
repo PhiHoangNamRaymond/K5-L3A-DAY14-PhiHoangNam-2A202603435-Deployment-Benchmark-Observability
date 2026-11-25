@@ -1,5 +1,10 @@
 # Part 6 — Final Project: Production-ready AI Agent
 
+## Bản làm đã triển khai
+
+Các module agent, Redis guards, Docker/Compose và cấu hình cloud đã được hoàn thiện. Kết quả kiểm tra đầy đủ nằm ở [reports/production-readiness.txt](../reports/production-readiness.txt): PASS 12/12. Xem [RUNBOOK.md](RUNBOOK.md) để chạy bản hiện tại và [DEPLOYMENT.md](../DEPLOYMENT.md) để biết trạng thái cloud. Phần bên dưới giữ mô tả yêu cầu bản khung của lab để đối chiếu.
+
+
 Bạn tự xây một AI agent đủ chuẩn production từ **bản khung** trong thư mục này, kết hợp mọi thứ đã học ở Part 1–5.
 Mọi file đều đã có sẵn, phần việc của bạn nằm ở các chỗ ghi `TODO`. Bản khung chạy được nhưng **chưa đạt tiêu chí nào**.
 

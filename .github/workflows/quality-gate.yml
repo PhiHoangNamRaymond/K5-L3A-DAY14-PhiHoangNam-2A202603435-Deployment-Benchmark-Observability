@@ -1,0 +1,53 @@
+name: Lab quality gates
+on: [push, pull_request]
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r 06-lab-complete/requirements.txt
+      - name: Full production checker, including Docker
+        working-directory: 06-lab-complete
+        run: python check_production_ready.py --redis-url redis://localhost:6379/0
+  evaluation:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 06-lab-complete/benchmark-observability/develop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Require 23 of 23 and no regressions
+        shell: bash
+        run: |
+          AGENT_VERSION=v2 MOCK_ERROR_RATE=0 PORT=8002 python app.py > /tmp/agent.log 2>&1 &
+          agent_pid=$!
+          trap 'kill "$agent_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for attempt in $(seq 1 40); do
+            if curl -fsS http://localhost:8002/health >/dev/null; then ready=true; break; fi
+            sleep 0.5
+          done
+          "$ready" || { cat /tmp/agent.log; exit 1; }
+          python eval/run_eval.py --url http://localhost:8002 --min-accuracy 1.0 \
+            --baseline ../../../reports/eval_v2_fixed.json --out ../../../reports/ci_eval.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evaluation-report
+          path: reports/ci_eval.json
