@@ -1,0 +1,181 @@
+[
+  {
+    "name": "eval_v1",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "eval/run_eval.py",
+      "--url",
+      "http://127.0.0.1:55733",
+      "--out",
+      "reports/eval_v1.json"
+    ],
+    "started_utc": "2026-11-25T13:07:13.133700+00:00",
+    "exit_code": 1
+  },
+  {
+    "name": "eval_v2",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "eval/run_eval.py",
+      "--url",
+      "http://127.0.0.1:43115",
+      "--baseline",
+      "reports/eval_v1.json",
+      "--out",
+      "reports/eval_v2.json"
+    ],
+    "started_utc": "2026-11-25T13:07:17.164835+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "load_v2_c1",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "load_test.py",
+      "--url",
+      "http://127.0.0.1:43115",
+      "--requests",
+      "300",
+      "--concurrency",
+      "1",
+      "--out",
+      "reports/load_v2_c1.json"
+    ],
+    "started_utc": "2026-11-25T13:07:21.951915+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "load_v2_c10",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "load_test.py",
+      "--url",
+      "http://127.0.0.1:43115",
+      "--requests",
+      "300",
+      "--concurrency",
+      "10",
+      "--out",
+      "reports/load_v2_c10.json"
+    ],
+    "started_utc": "2026-11-25T13:08:29.284061+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "load_v2_c50",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "load_test.py",
+      "--url",
+      "http://127.0.0.1:43115",
+      "--requests",
+      "300",
+      "--concurrency",
+      "50",
+      "--out",
+      "reports/load_v2_c50.json"
+    ],
+    "started_utc": "2026-11-25T13:08:36.676209+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "load_v2_c100",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "load_test.py",
+      "--url",
+      "http://127.0.0.1:43115",
+      "--requests",
+      "300",
+      "--concurrency",
+      "100",
+      "--out",
+      "reports/load_v2_c100.json"
+    ],
+    "started_utc": "2026-11-25T13:08:40.055420+00:00",
+    "exit_code": 1
+  },
+  {
+    "name": "load_v2_slow_0",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "load_test.py",
+      "--url",
+      "http://127.0.0.1:46047",
+      "--requests",
+      "300",
+      "--concurrency",
+      "20",
+      "--out",
+      "reports/load_v2_slow_0.json"
+    ],
+    "started_utc": "2026-11-25T13:08:44.714867+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "load_v2_slow_0.03",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "load_test.py",
+      "--url",
+      "http://127.0.0.1:48773",
+      "--requests",
+      "300",
+      "--concurrency",
+      "20",
+      "--out",
+      "reports/load_v2_slow_0.03.json"
+    ],
+    "started_utc": "2026-11-25T13:08:48.972552+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "load_v2_slow_0.1",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "load_test.py",
+      "--url",
+      "http://127.0.0.1:47507",
+      "--requests",
+      "300",
+      "--concurrency",
+      "20",
+      "--out",
+      "reports/load_v2_slow_0.1.json"
+    ],
+    "started_utc": "2026-11-25T13:08:55.537293+00:00",
+    "exit_code": 1
+  },
+  {
+    "name": "eval_v2_fixed",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "eval/run_eval.py",
+      "--url",
+      "http://127.0.0.1:46119",
+      "--min-accuracy",
+      "1.0",
+      "--baseline",
+      "reports/eval_v2.json",
+      "--out",
+      "reports/eval_v2_fixed.json"
+    ],
+    "started_utc": "2026-11-25T13:09:03.625299+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "eval_v1_regression",
+    "command": [
+      "/home/nam/.venvs/k5-day14-bench/bin/python",
+      "eval/run_eval.py",
+      "--url",
+      "http://127.0.0.1:55733",
+      "--baseline",
+      "reports/eval_v2_fixed.json",
+      "--out",
+      "reports/eval_v1_regression.json"
+    ],
+    "started_utc": "2026-11-25T13:09:09.661949+00:00",
+    "exit_code": 1
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "target": "http://127.0.0.1:48773",
+  "concurrency": 20,
+  "total_requests": 300,
+  "duration_s": 3.76,
+  "rps": 79.85,
+  "error_rate": 0.0,
+  "status_codes": {
+    "200": 300
+  },
+  "latency_ms": {
+    "min": 149.6,
+    "avg": 228.9,
+    "p50": 190.9,
+    "p90": 214.6,
+    "p95": 219.4,
+    "p99": 1690.7,
+    "max": 1724.5
+  },
+  "total_cost_usd": 0.010208,
+  "slo": {
+    "p95_ms": 500,
+    "error_rate": 0.02,
+    "passed": true
+  }
+}

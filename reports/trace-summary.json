@@ -1,0 +1,18 @@
+{
+  "slow": {
+    "trace_id": "a476c361899107a80dccdc5277920b68",
+    "duration_ms": 1724.696279,
+    "llm_span": "chat mock-llm-small",
+    "llm_duration_ms": 1699.217858,
+    "llm_percent": 98.52272998381068,
+    "search_scope": "500 traces returned by Jaeger API v3 searchDepth=500"
+  },
+  "error": {
+    "trace_id": "2da5055fb71e4fc17856c92bcc293d66",
+    "duration_ms": 111.191085,
+    "llm_span": "chat mock-llm-small",
+    "llm_duration_ms": 86.815405,
+    "llm_percent": 78.07766692806352,
+    "search_scope": "500 traces returned by Jaeger API v3 searchDepth=500"
+  }
+}

@@ -1,0 +1,15 @@
+{"ts": "2026-11-25T13:17:47.811680+00:00", "event": "startup", "agent_version": "v2", "model": "mock-llm-small", "port": 52451}
+INFO:     Started server process [18201]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:52451 (Press CTRL+C to quit)
+{"ts": "2026-11-25T13:17:48.015900+00:00", "event": "http_request", "request_id": "30ad1780321b", "method": "GET", "route": "/health", "status": 200, "ms": 1.4}
+{"ts": "2026-11-25T13:17:48.197439+00:00", "event": "llm_call", "request_id": "ba94f1930ec2", "model": "mock-llm-small", "agent_version": "v2", "input_tokens": 86, "output_tokens": 55, "cost_usd": 4.6e-05, "llm_ms": 155.9, "retrieved": true}
+{"ts": "2026-11-25T13:17:48.199243+00:00", "event": "http_request", "request_id": "ba94f1930ec2", "method": "POST", "route": "/ask", "status": 200, "ms": 181.7}
+{"ts": "2026-11-25T13:17:48.200989+00:00", "event": "http_request", "request_id": "e16d2658f6bd", "method": "GET", "route": "unmatched", "status": 404, "ms": 0.3}
+{"ts": "2026-11-25T13:17:48.202241+00:00", "event": "http_request", "request_id": "d26c78ee95d3", "method": "GET", "route": "unmatched", "status": 404, "ms": 0.2}
+{"ts": "2026-11-25T13:17:48.203371+00:00", "event": "http_request", "request_id": "ccc9043d5460", "method": "GET", "route": "unmatched", "status": 404, "ms": 0.2}
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [18201]

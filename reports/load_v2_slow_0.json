@@ -1,0 +1,27 @@
+{
+  "target": "http://127.0.0.1:46047",
+  "concurrency": 20,
+  "total_requests": 300,
+  "duration_s": 2.95,
+  "rps": 101.72,
+  "error_rate": 0.01,
+  "status_codes": {
+    "503": 3,
+    "200": 297
+  },
+  "latency_ms": {
+    "min": 153.3,
+    "avg": 190.4,
+    "p50": 191.7,
+    "p90": 214.4,
+    "p95": 217.5,
+    "p99": 223.3,
+    "max": 225.6
+  },
+  "total_cost_usd": 0.010086,
+  "slo": {
+    "p95_ms": 500,
+    "error_rate": 0.02,
+    "passed": true
+  }
+}

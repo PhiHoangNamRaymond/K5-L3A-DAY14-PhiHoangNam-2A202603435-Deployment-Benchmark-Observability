@@ -1,0 +1,10 @@
+{
+  "parallel_calls": 100,
+  "rate_limit": 7,
+  "accepted": 7,
+  "http_429": 93,
+  "budget_usd": 0.0001,
+  "accepted_reservations": 6,
+  "reserved_usd": 9e-05,
+  "settled_usd": 5.4e-05
+}

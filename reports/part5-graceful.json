@@ -1,0 +1,7 @@
+{
+  "http_status": 200,
+  "body": {
+    "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
+  },
+  "server_exit_code": 0
+}

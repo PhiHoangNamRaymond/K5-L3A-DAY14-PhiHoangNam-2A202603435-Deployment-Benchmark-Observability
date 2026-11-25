@@ -1,0 +1,195 @@
+{
+  "trace_id": "2da5055fb71e4fc17856c92bcc293d66",
+  "duration_ms": 111.191085,
+  "llm_span": "chat mock-llm-small",
+  "llm_duration_ms": 86.815405,
+  "llm_percent": 78.07766692806352,
+  "spans": [
+    {
+      "trace_id": "2da5055fb71e4fc17856c92bcc293d66",
+      "span_id": "35aa6db809b845fa",
+      "parent_span_id": "d2dac6cc6111be26",
+      "name": "agent.retrieve_context",
+      "duration_ms": 22.257439,
+      "attributes": {
+        "retrieval.documents": "1"
+      },
+      "status": {},
+      "events": [],
+      "resource": {
+        "agent.version": "v2",
+        "deployment.environment.name": "lab",
+        "service.instance.id": "e226ecaac08a",
+        "service.name": "observable-agent",
+        "service.version": "1.0.0",
+        "telemetry.sdk.language": "python",
+        "telemetry.sdk.name": "opentelemetry",
+        "telemetry.sdk.version": "1.45.2"
+      }
+    },
+    {
+      "trace_id": "2da5055fb71e4fc17856c92bcc293d66",
+      "span_id": "6ad9147298700f60",
+      "parent_span_id": "d2dac6cc6111be26",
+      "name": "chat mock-llm-small",
+      "duration_ms": 86.815405,
+      "attributes": {
+        "error.type": "upstream_unavailable",
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "mock",
+        "gen_ai.request.model": "mock-llm-small"
+      },
+      "status": {
+        "message": "LLMError: Upstream LLM error: 503 Service Unavailable (mock)",
+        "code": 2
+      },
+      "events": [
+        {
+          "timeUnixNano": "1795613473551631442",
+          "name": "exception",
+          "attributes": [
+            {
+              "key": "exception.escaped",
+              "value": {
+                "stringValue": "False"
+              }
+            },
+            {
+              "key": "exception.message",
+              "value": {
+                "stringValue": "Upstream LLM error: 503 Service Unavailable (mock)"
+              }
+            },
+            {
+              "key": "exception.stacktrace",
+              "value": {
+                "stringValue": "Traceback (most recent call last):\n  File \"/app/app/main.py\", line 153, in run_agent\n    result = await mock_llm.generate(question, context=context,\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/utils/mock_llm.py\", line 207, in generate\n    raise LLMError(\"Upstream LLM error: 503 Service Unavailable (mock)\")\nutils.mock_llm.LLMError: Upstream LLM error: 503 Service Unavailable (mock)\n"
+              }
+            },
+            {
+              "key": "exception.type",
+              "value": {
+                "stringValue": "utils.mock_llm.LLMError"
+              }
+            }
+          ]
+        }
+      ],
+      "resource": {
+        "agent.version": "v2",
+        "deployment.environment.name": "lab",
+        "service.instance.id": "e226ecaac08a",
+        "service.name": "observable-agent",
+        "service.version": "1.0.0",
+        "telemetry.sdk.language": "python",
+        "telemetry.sdk.name": "opentelemetry",
+        "telemetry.sdk.version": "1.45.2"
+      }
+    },
+    {
+      "trace_id": "2da5055fb71e4fc17856c92bcc293d66",
+      "span_id": "d2dac6cc6111be26",
+      "parent_span_id": "f59db41a4549ed09",
+      "name": "agent.run",
+      "duration_ms": 109.539333,
+      "attributes": {
+        "agent.question.length": "47",
+        "agent.version": "v2"
+      },
+      "status": {
+        "message": "LLMError: Upstream LLM error: 503 Service Unavailable (mock)",
+        "code": 2
+      },
+      "events": [
+        {
+          "timeUnixNano": "1795613473552000744",
+          "name": "exception",
+          "attributes": [
+            {
+              "key": "exception.escaped",
+              "value": {
+                "stringValue": "False"
+              }
+            },
+            {
+              "key": "exception.message",
+              "value": {
+                "stringValue": "Upstream LLM error: 503 Service Unavailable (mock)"
+              }
+            },
+            {
+              "key": "exception.stacktrace",
+              "value": {
+                "stringValue": "Traceback (most recent call last):\n  File \"/home/agent/.local/lib/python3.11/site-packages/opentelemetry/trace/__init__.py\", line 602, in use_span\n    yield span\n  File \"/home/agent/.local/lib/python3.11/site-packages/opentelemetry/sdk/trace/__init__.py\", line 1136, in start_as_current_span\n    yield span\n  File \"/home/agent/.local/lib/python3.11/site-packages/opentelemetry/trace/__init__.py\", line 441, in start_as_current_span\n    yield span\n  File \"/app/app/main.py\", line 153, in run_agent\n    result = await mock_llm.generate(question, context=context,\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/utils/mock_llm.py\", line 207, in generate\n    raise LLMError(\"Upstream LLM error: 503 Service Unavailable (mock)\")\nutils.mock_llm.LLMError: Upstream LLM error: 503 Service Unavailable (mock)\n"
+              }
+            },
+            {
+              "key": "exception.type",
+              "value": {
+                "stringValue": "utils.mock_llm.LLMError"
+              }
+            }
+          ]
+        }
+      ],
+      "resource": {
+        "agent.version": "v2",
+        "deployment.environment.name": "lab",
+        "service.instance.id": "e226ecaac08a",
+        "service.name": "observable-agent",
+        "service.version": "1.0.0",
+        "telemetry.sdk.language": "python",
+        "telemetry.sdk.name": "opentelemetry",
+        "telemetry.sdk.version": "1.45.2"
+      }
+    },
+    {
+      "trace_id": "2da5055fb71e4fc17856c92bcc293d66",
+      "span_id": "f59db41a4549ed09",
+      "parent_span_id": null,
+      "name": "POST /ask",
+      "duration_ms": 111.191085,
+      "attributes": {
+        "http.flavor": "1.1",
+        "http.host": "172.22.0.9:8000",
+        "http.method": "POST",
+        "http.route": "/ask",
+        "http.scheme": "http",
+        "http.server_name": "nginx",
+        "http.status_code": "503",
+        "http.target": "/ask",
+        "http.url": "http://nginx/ask",
+        "http.user_agent": "python-requests/2.34.2",
+        "net.host.port": "8000",
+        "net.peer.ip": "172.22.0.6",
+        "net.peer.port": "59712"
+      },
+      "status": {
+        "code": 2
+      },
+      "events": [],
+      "resource": {
+        "agent.version": "v2",
+        "deployment.environment.name": "lab",
+        "service.instance.id": "e226ecaac08a",
+        "service.name": "observable-agent",
+        "service.version": "1.0.0",
+        "telemetry.sdk.language": "python",
+        "telemetry.sdk.name": "opentelemetry",
+        "telemetry.sdk.version": "1.45.2"
+      }
+    }
+  ],
+  "matching_log": {
+    "ts": "2026-11-25T13:31:13.552054+00:00",
+    "level": "INFO",
+    "service": "observable-agent",
+    "instance": "e226ecaac08a",
+    "event": "llm_error",
+    "trace_id": "2da5055fb71e4fc17856c92bcc293d66",
+    "span_id": "f59db41a4549ed09",
+    "request_id": "afae9969ff6d",
+    "error": "Upstream LLM error: 503 Service Unavailable (mock)"
+  },
+  "search_scope": "500 traces returned by Jaeger API v3 searchDepth=500"
+}

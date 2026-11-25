@@ -1,0 +1,27 @@
+{
+  "target": "http://127.0.0.1:43115",
+  "concurrency": 100,
+  "total_requests": 300,
+  "duration_s": 3.33,
+  "rps": 90.2,
+  "error_rate": 0.0133,
+  "status_codes": {
+    "200": 296,
+    "503": 4
+  },
+  "latency_ms": {
+    "min": 189.1,
+    "avg": 864.9,
+    "p50": 359.0,
+    "p90": 2325.0,
+    "p95": 2539.9,
+    "p99": 2809.0,
+    "max": 2974.4
+  },
+  "total_cost_usd": 0.01033,
+  "slo": {
+    "p95_ms": 500,
+    "error_rate": 0.02,
+    "passed": false
+  }
+}
